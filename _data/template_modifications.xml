@@ -2,16 +2,17 @@
 <template_modifications>
   <modification type="public" template="PAGE_CONTAINER" modification_key="wutime_accblock_render_blocks" description="Render the accessibility blocks" execution_order="0" enabled="1" action="str_replace">
     <find><![CDATA[<!--XF:EXTRA_OUTPUT-->]]></find>
-    <replace><![CDATA[
-$0
+    <replace><![CDATA[$0
 
-<xf:include template="wutime_accblock_blocks"/>]]></replace>
+<xf:if is="$xf.visitor.Option.wutime_accblock">
+	<xf:include template="wutime_accblock_blocks"/>
+</xf:if>]]></replace>
   </modification>
   <modification type="public" template="PAGE_CONTAINER" modification_key="wutime_accblock_render_footer_blocks" description="Render footer blocks" execution_order="1" enabled="1" action="str_replace">
     <find><![CDATA[<xf:ad position="container_breadcrumb_bottom_below" />]]></find>
-    <replace><![CDATA[<div style="margin-top:1em">
+    <replace><![CDATA[<xf:if is="$xf.visitor.Option.wutime_accblock">
 	<xf:include template="wutime_accblock_blocks"/>
-</div>
+</xf:if>
 
 $0]]></replace>
   </modification>
