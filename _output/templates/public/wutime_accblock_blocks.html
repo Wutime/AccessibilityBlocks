@@ -1,0 +1,12 @@
+<div class="wutime_accblock_container">
+	<div>
+		<a tabindex="1" href="{{ link('whats-new') }}" title="{{ phrase('nav.whatsNew') }}">{{ phrase('nav.whatsNew') }}</a>
+		<a tabindex="2" href="{{ link('whats-new/posts') }}" title="{{ phrase('nav.newPosts') }}">{{ phrase('nav.newPosts') }}</a>
+		<a tabindex="3" href="{{ link('conversations') }}" title="{{ phrase('conversations') }}">{{ phrase('conversations') }}</a>
+
+		<xf:if is="$controller=='XF:Thread'">
+			<a tabindex="4" href="{{ link('posts/' . $forum.last_post_id) }}" title="{{ phrase('wutime_accblock_last_post') }}" class="wutime_accblock_light">{{ phrase('wutime_accblock_last_post') }}</a>
+			<a tabindex="5" href="{{ link('threads/' . $forum.last_thread_id) }}" title="{{ phrase('wutime_accblock_first_post') }}" class="wutime_accblock_light">{{ phrase('wutime_accblock_first_post') }}</a>
+		</xf:if>
+	</div>
+</div>

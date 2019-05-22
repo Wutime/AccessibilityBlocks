@@ -1,0 +1,1 @@
+Enable large accessiblity blocks at the header and footer of each page

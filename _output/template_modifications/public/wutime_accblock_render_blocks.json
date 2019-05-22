@@ -1,0 +1,9 @@
+{
+    "template": "PAGE_CONTAINER",
+    "description": "Render the accessibility blocks",
+    "execution_order": 0,
+    "enabled": true,
+    "action": "str_replace",
+    "find": "<!--XF:EXTRA_OUTPUT-->",
+    "replace": "\n$0\n\n<xf:include template=\"wutime_accblock_blocks\"/>"
+}
