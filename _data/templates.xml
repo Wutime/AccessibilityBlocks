@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
-  <template type="public" title="wutime_userhideavatars_option_code" version_id="1" version_string="1.0.0 Alpha"><![CDATA[<xf:checkboxrow label="{{ phrase('wutime_userhideavatars_accessibility_title') }}">
-					<xf:option name="option[wutime_userhideavatars_enable]" checked="{$xf.visitor.Option.wutime_userhideavatars_enable}"
-						label="{{ phrase('wutime_userhideavatars_option_title') }}" />
+  <template type="public" title="wutime_accblock.less" version_id="101" version_string="0.0.1 1"><![CDATA[.wutime_accblock_container {
+	text-align:center;
+}
+
+.wutime_accblock_container div {
+
+}
+
+.wutime_accblock_container a {
+	display:block;
+	min-width:8em;
+	white-space: nowrap;
+	width:18%;
+	float:left;
+
+	padding:1em 1em 1em 1em;
+	margin:.5em;
+	color:white;
+	text-align:center;
+	background:green;
+}
+
+.wutime_accblock_container a.wutime_accblock_light {
+	background:#3dad3d;
+}
+
+.wutime_accblock_container a:hover {
+    background-color: #005a00;
+}]]></template>
+  <template type="public" title="wutime_accblock_blocks" version_id="102" version_string="0.0.2"><![CDATA[<div class="wutime_accblock_container">
+	<div>
+		<a href="{{ link('whats-new') }}" title="{{ phrase('nav.whatsNew') }}">{{ phrase('nav.whatsNew') }}</a>
+		<a href="{{ link('whats-new/posts') }}" title="{{ phrase('nav.newPosts') }}">{{ phrase('nav.newPosts') }}</a>
+		<a href="{{ link('conversations') }}" title="{{ phrase('conversations') }}">{{ phrase('conversations') }}</a>
+
+		<xf:if is="$controller=='XF:Thread'">
+			<a href="{{ link('threads/' . $forum.last_thread_id) }}" title="{{ phrase('wutime_accblock_first_post') }}" class="wutime_accblock_light">{{ phrase('wutime_accblock_first_post') }}</a>
+			<a href="{{ link('posts/' . $forum.last_post_id) }}" title="{{ phrase('wutime_accblock_last_post') }}" class="wutime_accblock_light">{{ phrase('wutime_accblock_last_post') }}</a>
+		</xf:if>
+	</div>
+</div>]]></template>
+  <template type="public" title="wutime_accblock_option_code" version_id="101" version_string="0.0.1 1"><![CDATA[<xf:checkboxrow label="{{ phrase('wutime_accblock_accessibility_title') }}">
+					<xf:option name="option[wutime_accblock]" checked="{$xf.visitor.Option.wutime_accblock}"
+						label="{{ phrase('wutime_accblock_option_title') }}" />
 				</xf:checkboxrow>]]></template>
 </templates>
