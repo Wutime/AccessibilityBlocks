@@ -21,6 +21,9 @@ class UserOption extends XFCP_UserOption
 		$options = \XF::options();
 
 		$defaults = $options->registrationDefaults;
+
+		if (!isset($defaults['wutime_accblock'])) $defaults['wutime_accblock'] = false;
+
 		$this->wutime_accblock = $defaults['wutime_accblock'] ? true : false;
 	}
 
