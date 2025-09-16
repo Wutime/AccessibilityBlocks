@@ -1,46 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
-  <template type="public" title="wutime_accblock.less" version_id="101" version_string="0.0.1 1"><![CDATA[.wutime_accblock_container {
-	text-align:center;
+  <template type="public" title="wutime_accblock.less" version_id="1010070" version_string="1.1.0"><![CDATA[// Respect users who need a visible focus at all times
+:focus-visible {
+  outline: 2px solid @xf-borderAccentColor !important;
+  outline-offset: 2px;
 }
 
-.wutime_accblock_container div {
-
+// Minimum hit area for controls
+button, [role="button"], .button, a.button {
+  min-height: 44px;
+  min-width: 44px;
 }
 
-.wutime_accblock_container a {
-	display:block;
-	min-width:8em;
-	white-space: nowrap;
-	width:18%;
-	float:left;
 
-	padding:1em 1em 1em 1em;
-	margin:.5em;
-	color:white;
-	text-align:center;
-	background:green;
-}
+/**
+ * Accessible navigation blocks
+ * Wutime Add-on
+ */
+.wutime_accblock_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+  margin: @xf-paddingMedium 0;
 
-.wutime_accblock_container a.wutime_accblock_light {
-	background:#3dad3d;
-}
+  .button {
+    font-size: @xf-fontSizeLarger;
+    padding: @xf-paddingMedium @xf-paddingLarge;
+    min-height: 44px;
+    line-height: 1.25;
+    flex: 1 1 220px;
+    max-width: 360px;
+    white-space: normal;
+  }
 
-.wutime_accblock_container a:hover {
-    background-color: #005a00;
+  // Force 2 columns on narrow/mobile
+  @media (max-width: @xf-responsiveMedium) {
+    .button {
+      flex: 1 1 45%;    // roughly 2 per row
+      max-width: 50%;   // cap to half width
+      font-size: @xf-fontSizeLargest;
+      padding: @xf-paddingLarge;
+    }
+  }
+
+  .button:focus-visible {
+    outline: 2px solid @xf-borderAccentColor;
+    outline-offset: 2px;
+  }
+
+  .wutime_accblock_light {
+    &:extend(.button--cta all);
+  }
 }]]></template>
-  <template type="public" title="wutime_accblock_blocks" version_id="102" version_string="0.0.2"><![CDATA[<div class="wutime_accblock_container">
-	<div>
-		<a href="{{ link('whats-new') }}" title="{{ phrase('nav.whatsNew') }}">{{ phrase('nav.whatsNew') }}</a>
-		<a href="{{ link('whats-new/posts') }}" title="{{ phrase('nav.newPosts') }}">{{ phrase('nav.newPosts') }}</a>
-		<a href="{{ link('conversations') }}" title="{{ phrase('conversations') }}">{{ phrase('conversations') }}</a>
+  <template type="public" title="wutime_accblock_blocks" version_id="1010070" version_string="1.1.0"><![CDATA[<xf:macro name="accNavLink" arg-href="" arg-label="" arg-isCurrent="0" arg-class="" arg-srNote="">
+	<xf:if is="$isCurrent">
+		<a class="button button--primary {$class}" href="{$href}" aria-current="page">
+			{$label}<xf:if is="$srNote"><span class="u-srOnly"> — {$srNote}</span></xf:if>
+		</a>
+	<xf:else />
+		<a class="button button--primary {$class}" href="{$href}">
+			{$label}<xf:if is="$srNote"><span class="u-srOnly"> — {$srNote}</span></xf:if>
+		</a>
+	</xf:if>
+</xf:macro>
 
-		<xf:if is="$controller=='XF:Thread'">
-			<a href="{{ link('threads/' . $forum.last_thread_id) }}" title="{{ phrase('wutime_accblock_first_post') }}" class="wutime_accblock_light">{{ phrase('wutime_accblock_first_post') }}</a>
-			<a href="{{ link('posts/' . $forum.last_post_id) }}" title="{{ phrase('wutime_accblock_last_post') }}" class="wutime_accblock_light">{{ phrase('wutime_accblock_last_post') }}</a>
-		</xf:if>
-	</div>
-</div>]]></template>
+<!-- Controller-based "current" flags (robust in both XF 2.2/2.3) -->
+<xf:set var="$isWhatsNew" value="{{ $controller == 'XF:WhatsNew' }}" />
+<xf:set var="$isNewPosts" value="{{ $controller == 'XF:WhatsNewPosts' }}" />
+<xf:set var="$isConvos" value="{{ $controller == 'XF:Conversation' }}" />
+
+<nav class="wutime_accblock_container" aria-label="{{ phrase('navigation') }}">
+
+	<xf:macro name="accNavLink"
+		arg-href="{{ link('whats-new') }}"
+		arg-label="{{ phrase('nav.whatsNew') }}"
+		arg-isCurrent="{{ $isWhatsNew }}" />
+
+	<xf:macro name="accNavLink"
+		arg-href="{{ link('whats-new/posts') }}"
+		arg-label="{{ phrase('nav.newPosts') }}"
+		arg-isCurrent="{{ $isNewPosts }}" />
+
+	<xf:macro name="accNavLink"
+		arg-href="{{ link('conversations') }}"
+		arg-label="{{ phrase('wu_accblock_mesages') }}"
+		arg-isCurrent="{{ $isConvos }}" />
+
+<xf:if is="$wacc_first_post_id && $wacc_last_post_id">
+	<xf:macro name="accNavLink"
+		arg-href="{{ link('posts', {'post_id': $wacc_first_post_id}) }}"
+		arg-label="{{ phrase('wutime_accblock_first_post') }}"
+		arg-class="button--cta"
+		arg-srNote="{{ phrase('in_thread_x', {'thread': $wacc_thread_title}) }}" />
+
+	<xf:macro name="accNavLink"
+		arg-href="{{ link('posts', {'post_id': $wacc_last_post_id}) }}"
+		arg-label="{{ phrase('wutime_accblock_last_post') }}"
+		arg-class="button--cta"
+		arg-srNote="{{ phrase('in_thread_x', {'thread': $wacc_thread_title}) }}" />
+</xf:if>
+
+
+</nav>]]></template>
   <template type="public" title="wutime_accblock_option_code" version_id="101" version_string="0.0.1 1"><![CDATA[<xf:checkboxrow label="{{ phrase('wutime_accblock_accessibility_title') }}">
 					<xf:option name="option[wutime_accblock]" checked="{$xf.visitor.Option.wutime_accblock}"
 						label="{{ phrase('wutime_accblock_option_title') }}" />

@@ -1,13 +1,13 @@
 {
     "public/wutime_accblock.less": {
-        "version_id": 101,
-        "version_string": "0.0.1 1",
-        "hash": "804d4111bf32eedaee78dd6bd359b037"
+        "version_id": 1010070,
+        "version_string": "1.1.0",
+        "hash": "8f5cab75f7d9e03ad67cb834f344b8b6"
     },
     "public/wutime_accblock_blocks.html": {
-        "version_id": 102,
-        "version_string": "0.0.2",
-        "hash": "bf0ce3c577eba8c5c56e3a1790cda9ad"
+        "version_id": 1010070,
+        "version_string": "1.1.0",
+        "hash": "2717757354873f5973b1eb933198e483"
     },
     "public/wutime_accblock_option_code.html": {
         "version_id": 101,

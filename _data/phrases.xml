@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phrases>
+  <phrase title="wu_accblock_mesages" version_id="1010070" version_string="1.1.0"><![CDATA[Messages]]></phrase>
   <phrase title="wutime_accblock_accessibility_title" version_id="103" version_string="0.0.3"><![CDATA[Accessible navigation]]></phrase>
   <phrase title="wutime_accblock_first_post" version_id="101" version_string="0.0.1 1"><![CDATA[First post]]></phrase>
   <phrase title="wutime_accblock_last_post" version_id="101" version_string="0.0.1 1"><![CDATA[Last post]]></phrase>

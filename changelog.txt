@@ -1,0 +1,17 @@
+
+
+
+
+
+
+
+
+v1.1.1
+Fix: Isolate Css inclusion to users that have enabled the option for accessibility assistance
+
+v1.1.0
+Add: Navigate to first or last post immediately thru navigation
+Add: Navigation defaults to xenforo coloe scheme for dark / light 
+Add: Increase size of all touch areas (specifically buttons + interactions)
+Add: aria-current page for screen readers
+Add: XF 2.3 compatible

@@ -1,12 +1,50 @@
-<div class="wutime_accblock_container">
-	<div>
-		<a href="{{ link('whats-new') }}" title="{{ phrase('nav.whatsNew') }}">{{ phrase('nav.whatsNew') }}</a>
-		<a href="{{ link('whats-new/posts') }}" title="{{ phrase('nav.newPosts') }}">{{ phrase('nav.newPosts') }}</a>
-		<a href="{{ link('conversations') }}" title="{{ phrase('conversations') }}">{{ phrase('conversations') }}</a>
+<xf:macro name="accNavLink" arg-href="" arg-label="" arg-isCurrent="0" arg-class="" arg-srNote="">
+	<xf:if is="$isCurrent">
+		<a class="button button--primary {$class}" href="{$href}" aria-current="page">
+			{$label}<xf:if is="$srNote"><span class="u-srOnly"> — {$srNote}</span></xf:if>
+		</a>
+	<xf:else />
+		<a class="button button--primary {$class}" href="{$href}">
+			{$label}<xf:if is="$srNote"><span class="u-srOnly"> — {$srNote}</span></xf:if>
+		</a>
+	</xf:if>
+</xf:macro>
 
-		<xf:if is="$controller=='XF:Thread'">
-			<a href="{{ link('threads/' . $forum.last_thread_id) }}" title="{{ phrase('wutime_accblock_first_post') }}" class="wutime_accblock_light">{{ phrase('wutime_accblock_first_post') }}</a>
-			<a href="{{ link('posts/' . $forum.last_post_id) }}" title="{{ phrase('wutime_accblock_last_post') }}" class="wutime_accblock_light">{{ phrase('wutime_accblock_last_post') }}</a>
-		</xf:if>
-	</div>
-</div>
+<!-- Controller-based "current" flags (robust in both XF 2.2/2.3) -->
+<xf:set var="$isWhatsNew" value="{{ $controller == 'XF:WhatsNew' }}" />
+<xf:set var="$isNewPosts" value="{{ $controller == 'XF:WhatsNewPosts' }}" />
+<xf:set var="$isConvos" value="{{ $controller == 'XF:Conversation' }}" />
+
+<nav class="wutime_accblock_container" aria-label="{{ phrase('navigation') }}">
+
+	<xf:macro name="accNavLink"
+		arg-href="{{ link('whats-new') }}"
+		arg-label="{{ phrase('nav.whatsNew') }}"
+		arg-isCurrent="{{ $isWhatsNew }}" />
+
+	<xf:macro name="accNavLink"
+		arg-href="{{ link('whats-new/posts') }}"
+		arg-label="{{ phrase('nav.newPosts') }}"
+		arg-isCurrent="{{ $isNewPosts }}" />
+
+	<xf:macro name="accNavLink"
+		arg-href="{{ link('conversations') }}"
+		arg-label="{{ phrase('wu_accblock_mesages') }}"
+		arg-isCurrent="{{ $isConvos }}" />
+
+<xf:if is="$wacc_first_post_id && $wacc_last_post_id">
+	<xf:macro name="accNavLink"
+		arg-href="{{ link('posts', {'post_id': $wacc_first_post_id}) }}"
+		arg-label="{{ phrase('wutime_accblock_first_post') }}"
+		arg-class="button--cta"
+		arg-srNote="{{ phrase('in_thread_x', {'thread': $wacc_thread_title}) }}" />
+
+	<xf:macro name="accNavLink"
+		arg-href="{{ link('posts', {'post_id': $wacc_last_post_id}) }}"
+		arg-label="{{ phrase('wutime_accblock_last_post') }}"
+		arg-class="button--cta"
+		arg-srNote="{{ phrase('in_thread_x', {'thread': $wacc_thread_title}) }}" />
+</xf:if>
+
+
+</nav>

@@ -1,29 +1,53 @@
+// Respect users who need a visible focus at all times
+:focus-visible {
+  outline: 2px solid @xf-borderAccentColor !important;
+  outline-offset: 2px;
+}
+
+// Minimum hit area for controls
+button, [role="button"], .button, a.button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+
+/**
+ * Accessible navigation blocks
+ * Wutime Add-on
+ */
 .wutime_accblock_container {
-	text-align:center;
-}
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+  margin: @xf-paddingMedium 0;
 
-.wutime_accblock_container div {
+  .button {
+    font-size: @xf-fontSizeLarger;
+    padding: @xf-paddingMedium @xf-paddingLarge;
+    min-height: 44px;
+    line-height: 1.25;
+    flex: 1 1 220px;
+    max-width: 360px;
+    white-space: normal;
+  }
 
-}
+  // Force 2 columns on narrow/mobile
+  @media (max-width: @xf-responsiveMedium) {
+    .button {
+      flex: 1 1 45%;    // roughly 2 per row
+      max-width: 50%;   // cap to half width
+      font-size: @xf-fontSizeLargest;
+      padding: @xf-paddingLarge;
+    }
+  }
 
-.wutime_accblock_container a {
-	display:block;
-	min-width:8em;
-	white-space: nowrap;
-	width:18%;
-	float:left;
+  .button:focus-visible {
+    outline: 2px solid @xf-borderAccentColor;
+    outline-offset: 2px;
+  }
 
-	padding:1em 1em 1em 1em;
-	margin:.5em;
-	color:white;
-	text-align:center;
-	background:green;
-}
-
-.wutime_accblock_container a.wutime_accblock_light {
-	background:#3dad3d;
-}
-
-.wutime_accblock_container a:hover {
-    background-color: #005a00;
+  .wutime_accblock_light {
+    &:extend(.button--cta all);
+  }
 }

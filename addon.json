@@ -1,14 +1,23 @@
 {
     "legacy_addon_id": "",
-    "title": "[Wutime] Accessibility Blocks",
-    "description": "",
-    "version_id": 105,
-    "version_string": "1.0.0",
+    "title": "Accessibility Blocks",
+    "description": "Accessible navigation blocks for users that enable the option in their preferences.",
+    "version_id": 1010170,
+    "version_string": "1.1.1",
     "dev": "Wutime",
-    "dev_url": "https://www.wutime.com",
-    "faq_url": "",
-    "support_url": "",
+    "dev_url": "https://woocommerce.wutime.com",
+    "faq_url": "https://xenforo.com/community/resources/accessible-navigation-for-assistive-devices.7185/field?field=faq",
+    "support_url": "https://xenforo.com/community/threads/accessible-navigation-for-assistive-devices.165530/",
     "extra_urls": [],
-    "require": [],
-    "icon": "wu-logo-medium.png"
+    "require": {
+        "php": [
+            "7.2.7",
+            "PHP 7.2.7+"
+        ],
+        "XF": [
+            "2010000",
+            "XF 2.1"
+        ]
+    },
+    "icon": "logo.webp"
 }

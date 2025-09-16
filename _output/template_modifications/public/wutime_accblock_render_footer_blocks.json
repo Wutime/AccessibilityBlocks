@@ -5,5 +5,5 @@
     "enabled": true,
     "action": "str_replace",
     "find": "<xf:ad position=\"container_breadcrumb_bottom_below\" />",
-    "replace": "<xf:if is=\"$xf.visitor.Option.wutime_accblock\">\n\t<xf:include template=\"wutime_accblock_blocks\"/>\n</xf:if>\n\n$0"
+    "replace": "<xf:if is=\"$xf.visitor.Option.wutime_accblock\">\n\t<xf:css src=\"wutime_accblock.less\" />\n\t<xf:include template=\"wutime_accblock_blocks\"/>\n</xf:if>\n\n$0"
 }

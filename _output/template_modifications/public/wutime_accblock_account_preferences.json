@@ -1,0 +1,9 @@
+{
+    "template": "account_preferences",
+    "description": "Add option to account_preferences to enable accessibility blocks",
+    "execution_order": 10,
+    "enabled": true,
+    "action": "preg_replace",
+    "find": "(<xf:macro\\s+(?:id=\"helper_account::activity_privacy_row\"|template=\"helper_account\"\\s+name=\"activity_privacy_row\")\\s*/>)\n",
+    "replace": "<xf:include template=\"wutime_accblock_option_code\"/>\n\n$0"
+}

@@ -1,11 +1,11 @@
 {
-    "public/wutime_accblock_extra_less.json": {
-        "hash": "860b10dedf3dddcfae61ab2c18b1c730"
+    "public/wutime_accblock_account_preferences.json": {
+        "hash": "f1d4110d0423aac9b3d51b2ed2e035a3"
     },
     "public/wutime_accblock_render_blocks.json": {
-        "hash": "be04ca3020f183d20e3baeeb66cd1b1e"
+        "hash": "95d1623b4106deeb0d58135d1b516067"
     },
     "public/wutime_accblock_render_footer_blocks.json": {
-        "hash": "fff52310265c405d0130a16ec3efa421"
+        "hash": "0872466be91f1acfed372d50b95aa6ba"
     }
 }

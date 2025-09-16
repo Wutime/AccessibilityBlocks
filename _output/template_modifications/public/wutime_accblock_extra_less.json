@@ -1,9 +1,0 @@
-{
-    "template": "extra.less",
-    "description": "Styles for blocks",
-    "execution_order": 10,
-    "enabled": true,
-    "action": "preg_replace",
-    "find": "/$/",
-    "replace": "$0\n\n<xf:include template=\"wutime_accblock.less\"/>"
-}
